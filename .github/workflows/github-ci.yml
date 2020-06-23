@@ -31,17 +31,12 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew clean test -i
-      - name: Zip Build Results
+      - name: Upload Test Html Report
         if: always()
-        run: |
-          rm -rf build/tmp build/jest-cache build/cache-loader
-          zip -r build.test.zip build
-      - name: Upload Coverage
-        if: always()
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@master
         with:
-          name: build.test
-          path: build.test.zip
+          name: HTML test report
+          path: build/reports/tests/test
 
 
 
